@@ -6,13 +6,13 @@
 
 var fs = require('fs');
 var request = require('needle');
-var Promise = require('bluebird');
-// var promiseFs = Promise.promisify(require('fs'));
+var bluebird = require('bluebird');
+// var promiseFs = bluebird.promisify(require('fs'));
 
 // This function should retrieve the first line of the file at `filePath`
 var pluckFirstLineFromFileAsync = function(filePath) {
 
-  return new Promise ((resolve, reject) => {
+  return new bluebird ((resolve, reject) => {
     fs.readFile(filePath, 'utf-8', (err, file) => {
       if (err) {
         reject(err);
@@ -24,12 +24,6 @@ var pluckFirstLineFromFileAsync = function(filePath) {
     });
   });
 
-  // iPromise.then((data) => console.log(data));
-
-  // var promise = asynchFn();
-  // promise.then((data) => {
-  //   use(data);
-  // });
 
   // return promiseFs.readFile(filePath, 'utf-8')
   //   .then((data) => {
@@ -48,7 +42,7 @@ var pluckFirstLineFromFileAsync = function(filePath) {
 
 // This function should retrieve the status code of a GET request to `url`
 var getStatusCodeAsync = function(url) {
-  return new Promise ((resolve, reject) => {
+  return new bluebird ((resolve, reject) => {
     request.get(url, (error, response) => {
       if (error) {
         reject(error);

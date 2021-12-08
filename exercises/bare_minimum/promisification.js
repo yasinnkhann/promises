@@ -6,7 +6,7 @@
 var fs = require('fs');
 var request = require('needle');
 var crypto = require('crypto');
-var Promise = require('bluebird');
+var bluebird = require('bluebird');
 
 // (1) Asyncronous HTTP request
 var getGitHubProfile = function (user, callback) {
@@ -29,7 +29,7 @@ var getGitHubProfile = function (user, callback) {
   });
 };
 
-var getGitHubProfileAsync = Promise.promisify(getGitHubProfile);
+var getGitHubProfileAsync = bluebird.promisify(getGitHubProfile);
 
 
 // (2) Asyncronous token generation
@@ -40,7 +40,7 @@ var generateRandomToken = function(callback) {
   });
 };
 
-var generateRandomTokenAsync = Promise.promisify(generateRandomToken); // TODO
+var generateRandomTokenAsync = bluebird.promisify(generateRandomToken);
 
 
 // (3) Asyncronous file manipulation
@@ -58,7 +58,7 @@ var readFileAndMakeItFunny = function(filePath, callback) {
   });
 };
 
-var readFileAndMakeItFunnyAsync = Promise.promisify(readFileAndMakeItFunny);
+var readFileAndMakeItFunnyAsync = bluebird.promisify(readFileAndMakeItFunny);
 
 // readFileAndMakeItFunnyAsync()
 //   .then((file) => console.log(file))
